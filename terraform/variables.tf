@@ -1,6 +1,9 @@
-variable "project_name" {
+variable org_id {
   type    = string
-  default = "lemvi-risk-management-platform"
+}
+
+variable project_id {
+  type = string
 }
 
 variable "region" {

@@ -8,7 +8,9 @@ ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 
 # Install GitHub
-RUN apt-get update && apt-get install -y git curl
+RUN apt-get update && \
+    apt-get install -y git curl && \
+    pip3 install jupyter
 
 WORKDIR /app
 COPY . /app
@@ -28,5 +30,5 @@ WORKDIR /home/${USER_NAME}
 RUN curl -sSL https://install.python-poetry.org | python3 -
 RUN /bin/echo -e "\nexport PATH=/home/${USER_NAME}/.local/bin:$PATH:\n" >> /home/${USER_NAME}/.bashrc
 
-# During debugging, this entry point will be overridden. For more information, please refer to https://aka.ms/vscode-docker-python-debug
-CMD ["/bin/sh", "-c", "bash"]
+EXPOSE 8888                                           
+ENTRYPOINT ["jupyter", "notebook","--allow-root","--ip=0.0.0.0","--port=8888","--no-browser"]

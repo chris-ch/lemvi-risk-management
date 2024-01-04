@@ -12,18 +12,11 @@ RUN apt-get update && \
     apt-get install -y git curl && \
     pip3 install jupyter
 
-WORKDIR /app
-COPY . /app
-
-
 ARG USER_NAME=appuser
 ARG USER_UID=5678
 ARG USER_GID=${USER_UID}
 
-# Creates a non-root user with an explicit UID and adds permission to access the /workspace folder
-# For more info, please refer to https://aka.ms/vscode-docker-python-configure-containers
-RUN mkdir /workspace
-RUN adduser -u ${USER_UID} --disabled-password --gecos "" ${USER_NAME} && chown -R ${USER_NAME} /workspace
+RUN adduser -u ${USER_UID} --disabled-password --gecos "" ${USER_NAME}
 
 USER appuser
 

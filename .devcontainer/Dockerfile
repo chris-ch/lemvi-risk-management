@@ -23,6 +23,9 @@ ARG USER_GID=${USER_UID}
 RUN adduser -u ${USER_UID} --disabled-password --gecos "" ${USER_NAME} && chown -R ${USER_NAME} /app
 USER appuser
 
+WORKDIR /home/${USER_NAME}
+
+RUN curl -sSL https://install.python-poetry.org | python3 -
 RUN /bin/echo -e "\nexport PATH=/home/${USER_NAME}/.local/bin:$PATH:\n" >> /home/${USER_NAME}/.bashrc
 
 # During debugging, this entry point will be overridden. For more information, please refer to https://aka.ms/vscode-docker-python-debug

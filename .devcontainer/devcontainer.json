@@ -19,6 +19,6 @@
 	"mounts": [
 		"source=${localEnv:HOME}/.ssh,target=/home/appuser/.ssh,type=bind,readonly"
 	],
-  "workspaceMount": "source=${localWorkspaceFolder},target=/workspaces/lemvi-rm,type=bind",
-  "postStartCommand": "jupyter notebook --allow-root --ip=0.0.0.0 --port=888 --no-browser /workspaces/lemvi-rm"
+  "workspaceMount": "source=${localWorkspaceFolder},target=/home/appuser/workspace,type=bind",
+  "postStartCommand": "jupyter notebook --allow-root --ip=0.0.0.0 --port=8888 --no-browser /home/appuser/workspace"
 }

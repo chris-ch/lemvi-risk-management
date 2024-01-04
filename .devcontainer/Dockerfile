@@ -13,10 +13,17 @@ RUN apt-get update && apt-get install -y git curl
 WORKDIR /app
 COPY . /app
 
+
+ARG USER_NAME=appuser
+ARG USER_UID=5678
+ARG USER_GID=${USER_UID}
+
 # Creates a non-root user with an explicit UID and adds permission to access the /app folder
 # For more info, please refer to https://aka.ms/vscode-docker-python-configure-containers
-RUN adduser -u 5678 --disabled-password --gecos "" appuser && chown -R appuser /app
+RUN adduser -u ${USER_UID} --disabled-password --gecos "" ${USER_NAME} && chown -R ${USER_NAME} /app
 USER appuser
+
+RUN /bin/echo -e "\nexport PATH=/home/${USER_NAME}/.local/bin:$PATH:\n" >> /home/${USER_NAME}/.bashrc
 
 # During debugging, this entry point will be overridden. For more information, please refer to https://aka.ms/vscode-docker-python-debug
 CMD ["/bin/sh", "-c", "bash"]

@@ -7,8 +7,8 @@ ENV PYTHONDONTWRITEBYTECODE=1
 # Turns off buffering for easier container logging
 ENV PYTHONUNBUFFERED=1
 
-# Install pip requirements
-RUN curl -sSL https://install.python-poetry.org | python3 -
+# Install GitHub
+RUN apt-get update && apt-get install -y git curl
 
 WORKDIR /app
 COPY . /app

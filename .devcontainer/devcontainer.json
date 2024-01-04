@@ -4,8 +4,7 @@
     "cpus": 2
   },
   "waitFor": "onCreateCommand",
-  "updateContentCommand": "poetry update",
-  "postCreateCommand": "pipx install poetry",
+  "postCreateCommand": "curl -sSL https://install.python-poetry.org | python3 -",
   "customizations": {
     "codespaces": {
       "openFiles": []
@@ -16,7 +15,6 @@
         "ms-python.python"
       ]
     }
-  },
-	"postStartCommand": "pipx install poetry"
+  }
 }
 

@@ -1,13 +1,12 @@
 [tool.poetry]
 name = "lemvi-risk-management-platform"
 version = "0.1.0"
-description = "Google Cloud tools for gathering data from various sources"
+description = "Resources for Risk Monitoring"
 authors = ["Christophe <christophe.alexandre@lemvi.ch>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "3.11.6"
-functions-framework = "^3.5.0"
 
 
 [build-system]

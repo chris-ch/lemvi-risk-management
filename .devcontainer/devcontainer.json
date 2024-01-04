@@ -5,7 +5,7 @@
   },
   "waitFor": "onCreateCommand",
   "updateContentCommand": "poetry update",
-  "postCreateCommand": "",
+  "postCreateCommand": "pipx install poetry",
   "customizations": {
     "codespaces": {
       "openFiles": []
@@ -16,6 +16,7 @@
         "ms-python.python"
       ]
     }
-  }
+  },
+	"postStartCommand": "pipx install poetry"
 }
 

@@ -18,6 +18,6 @@
   },
 	"mounts": [
 		"source=${localEnv:HOME}/.ssh,target=/home/appuser/.ssh,type=bind,readonly"
-	]
+	],
+  "workspaceMount": "source=${localWorkspaceFolder},target=/workspaces/lemvi-rm,type=bind"
 }
-

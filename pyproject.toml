@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "lemvi-risk-management-platform"
+name = "lemvi-rm"
 version = "0.1.0"
 description = "Resources for Risk Monitoring"
 authors = ["Christophe <christophe.alexandre@lemvi.ch>"]

@@ -1,0 +1,34 @@
+bash: - : invalid option
+Usage:	bash [GNU long option] [option] ...
+	bash [GNU long option] [option] script-file ...
+GNU long options:
+	--debug
+	--debugger
+	--dump-po-strings
+	--dump-strings
+	--help
+	--init-file
+	--login
+	--noediting
+	--noprofile
+	--norc
+	--posix
+	--pretty-print
+	--rcfile
+	--restricted
+	--verbose
+	--version
+Shell options:
+	-ilrsD or -c command or -O shopt_option		(invocation only)
+	-abefhkmnptuvxBCEHPT or -o option
+Creating virtualenv lemvi-rm-LU2O5TV5-py3.10 in /home/appuser/.cache/pypoetry/virtualenvs
+Installing dependencies from lock file
+
+Package operations: 6 installs, 0 updates, 0 removals
+
+  • Installing six (1.16.0)
+  • Installing numpy (1.26.3)
+  • Installing python-dateutil (2.8.2)
+  • Installing pytz (2023.3.post1)
+  • Installing tzdata (2023.4)
+  • Installing pandas (2.1.4)

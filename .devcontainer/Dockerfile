@@ -13,7 +13,7 @@ RUN apt-get update && \
     pip3 install jupyter
 
 ARG USER_NAME=appuser
-ARG USER_UID=5678
+ARG USER_UID=1000
 ARG USER_GID=${USER_UID}
 
 RUN adduser -u ${USER_UID} --disabled-password --gecos "" ${USER_NAME}
@@ -23,7 +23,16 @@ USER appuser
 WORKDIR /home/${USER_NAME}
 
 RUN curl -sSL https://install.python-poetry.org | python3 -
+
+RUN /home/${USER_NAME}/.local/bin/poetry completions bash >> ~/.bash_completion
+
 RUN /bin/echo -e "\nexport PATH=/home/${USER_NAME}/.local/bin:$PATH:\n" >> /home/${USER_NAME}/.bashrc
 
-EXPOSE 8888                                           
-CMD ["/bin/bash"]
+ENTRYPOINT [ "poetry shell" ]
+
+# The CMD here makes sure the container stays running
+# by default. Keeping your startup steps in the ENTRYPOINT
+# allows you to safely override the command when using
+# docker run with your image or using Docker Compose.
+
+CMD [ "sleep", "infinity" ]

@@ -19,6 +19,5 @@
 	"mounts": [
 		"source=${localEnv:HOME}/.ssh,target=/home/appuser/.ssh,type=bind,readonly"
 	],
-  "overrideCommand": true,
-  "postStartCommand": "poetry shell"
+  "overrideCommand": true
 }

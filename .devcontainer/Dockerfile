@@ -16,6 +16,10 @@ ARG USER_NAME=appuser
 ARG USER_UID=1000
 ARG USER_GID=${USER_UID}
 
+COPY docker-entrypoint.sh /
+RUN chmod +x /docker-entrypoint.sh
+
+ENTRYPOINT [ "/docker-entrypoint.sh" ]
 RUN adduser -u ${USER_UID} --disabled-password --gecos "" ${USER_NAME}
 
 USER appuser
@@ -27,11 +31,6 @@ RUN curl -sSL https://install.python-poetry.org | python3 -
 RUN /home/${USER_NAME}/.local/bin/poetry completions bash >> ~/.bash_completion
 
 RUN /bin/echo -e "\nexport PATH=/home/${USER_NAME}/.local/bin:$PATH:\n" >> /home/${USER_NAME}/.bashrc
-
-COPY docker-entrypoint.sh /
-RUN chmod +x /docker-entrypoint.sh
-
-ENTRYPOINT [ "/docker-entrypoint.sh" ]
 
 # The CMD here makes sure the container stays running
 # by default. Keeping your startup steps in the ENTRYPOINT

@@ -17,9 +17,8 @@ ARG USER_UID=1000
 ARG USER_GID=${USER_UID}
 
 COPY docker-entrypoint.sh /
-RUN chmod +x /docker-entrypoint.sh
+RUN chmod a+x /docker-entrypoint.sh
 
-ENTRYPOINT [ "/docker-entrypoint.sh" ]
 RUN adduser -u ${USER_UID} --disabled-password --gecos "" ${USER_NAME}
 
 USER appuser
@@ -36,5 +35,6 @@ RUN /bin/echo -e "\nexport PATH=/home/${USER_NAME}/.local/bin:$PATH:\n" >> /home
 # by default. Keeping your startup steps in the ENTRYPOINT
 # allows you to safely override the command when using
 # docker run with your image or using Docker Compose.
+ENTRYPOINT [ "/docker-entrypoint.sh" ]
 
 CMD [ "sleep", "infinity" ]

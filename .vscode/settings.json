@@ -1,0 +1,3 @@
+{
+    "python.defaultInterpreterPath": "${env:WORKSPACE_ENV_PATH}"
+}

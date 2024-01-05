@@ -28,7 +28,7 @@ RUN /home/${USER_NAME}/.local/bin/poetry completions bash >> ~/.bash_completion
 
 RUN /bin/echo -e "\nexport PATH=/home/${USER_NAME}/.local/bin:$PATH:\n" >> /home/${USER_NAME}/.bashrc
 
-ENTRYPOINT [ "poetry shell" ]
+ENTRYPOINT [ "/bin/bash" ]
 
 # The CMD here makes sure the container stays running
 # by default. Keeping your startup steps in the ENTRYPOINT

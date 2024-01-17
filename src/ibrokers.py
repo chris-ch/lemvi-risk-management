@@ -2,15 +2,6 @@ from typing import Dict, List, Optional, Tuple
 from xml.etree import ElementTree
 import requests
 
-
-class RowData:
-    def __init__(self, row: Dict[str, str]):
-        self._row = row
-
-    def __repr__(self):
-        return repr(self._row)
-
-
 def load_ib_xml_report(ib_token: str, ib_query_id: str) -> ElementTree:
     ib_flex_url = f"https://www.interactivebrokers.com/Universal/servlet/FlexStatementService.SendRequest?t={ib_token}&q={ib_query_id}&v=3"
     ib_response = requests.get(ib_flex_url)
@@ -28,6 +19,15 @@ def check_report_error(report_tree: ElementTree) -> Optional[Tuple[int, str]]:
         return int(error_code.text), error_message.text
     
     return None
+
+
+class RowData:
+    def __init__(self, row: Dict[str, str]):
+        self._row = row
+
+    def __repr__(self):
+        return repr(self._row)
+
 
 def make_ib_records(report_tree: ElementTree) -> List[RowData]:
     ib_records = []

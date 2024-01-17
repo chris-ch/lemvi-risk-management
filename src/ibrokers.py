@@ -1,4 +1,4 @@
-from typing import Dict, List, Optional
+from typing import Dict, List, Optional, Tuple
 from xml.etree import ElementTree
 import requests
 
@@ -21,10 +21,11 @@ def load_ib_xml_report(ib_token: str, ib_query_id: str) -> ElementTree:
     ib_report = requests.get(ib_report_url)
     return ElementTree.fromstring(ib_report.content)
 
-def check_report_error(report_tree: ElementTree) -> Optional[int]:
-    error_node = report_tree.find('.//ErrorCode')
-    if error_node:
-        return int(error_node.text)
+def check_report_error(report_tree: ElementTree) -> Optional[Tuple[int, str]]:
+    error_code = report_tree.find('.//ErrorCode')
+    if error_code is not None:
+        error_message = report_tree.find('.//ErrorMessage')
+        return int(error_code.text), error_message.text
     
     return None
 

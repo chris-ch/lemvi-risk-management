@@ -56,12 +56,9 @@ def main():
     ib_token = os.getenv("IB_FLEX_REPORT_TOKEN")
     ib_query_id = os.getenv("IB_FLEX_QUERY_ID")
     ib_report = ibrokers.load_ib_xml_report(ib_token, ib_query_id)
-    print(ElementTree.tostring(ib_report))
     error = ibrokers.check_report_error(ib_report)
-    print(f'error: {error}')
     if error:
-        print(f'report in error: {error}, try again later')
-        raise ValueError(f'report in error: {error}, try again later')
+        raise ValueError(f'report in error: "{error[1]}" ({error[0]}), try again later')
     ib_positions = ibrokers.make_ib_records(ib_report)
     print(ib_positions)
 

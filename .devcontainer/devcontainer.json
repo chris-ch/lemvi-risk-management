@@ -1,10 +1,10 @@
 {
-  "build": { "dockerfile": "Dockerfile" },
-  "hostRequirements": {
+  "build": { "dockerfile": "Dockerfile" }
+  ,"hostRequirements": {
     "cpus": 2
-  },
-  "waitFor": "updateContentCommand",
-  "customizations": {
+  }
+  ,"waitFor": "updateContentCommand"
+  ,"customizations": {
     "codespaces": {
       "openFiles": []
     },
@@ -15,9 +15,10 @@
         "ms-azuretools.vscode-docker"
       ]
     }
-  },
-	"mounts": [
+  }
+	,"mounts": [
 		"source=${localEnv:HOME}/.ssh,target=/home/appuser/.ssh,type=bind,readonly"
-	],
-  "overrideCommand": false
+	]
+  ,"overrideCommand": false
+	, "postStartCommand": "poetry update"
 }
